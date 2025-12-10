@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+    /* border: 1px solid #000; */
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    text-align: center;
+}
+
+/* ========== HEADER ==========  */
+
+.header__days {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 2px;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    border-radius: 20px;
+}
+
+.header__days__dayblock {
+    /* height: 25px; */
+    display: grid;
+    grid-template-rows: 1fr, 1fr, 1fr;
+    /* background: #ccc; */
+    align-items: center;
+    justify-content: center;
+}
+
+.header__days__dayblock:hover {
+    cursor: pointer;
+    outline: 2px solid black;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+/* duplicate of upper */
+.header__days__dayblock__selected {
+    cursor: default;
+    outline: 2px solid black;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+.header__days__dayblock__dayofweek {
+    padding-top: 10px;
+}
+
+.header__week_num {
+    margin: 5px;
+}
+
+/* ========== LESSON HOLDER ==========  */
+
+.lesson_holder {
+    margin-top: 15px;
+    gap: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.lesson {
+    display: grid;
+    grid-template-columns: 50px auto;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+.lesson__left_part {
+    padding: 10px;
+    font-size: 50px;
+    border-right: 2px solid black;
+}
+
+.lesson__right_part {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10px;
+}
