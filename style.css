@@ -15,6 +15,11 @@
 
 /* ========== HEADER ==========  */
 
+.header__week_num {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
 .header__days {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -22,13 +27,12 @@
     border-top: 2px solid black;
     border-bottom: 2px solid black;
     border-radius: 20px;
+    margin-bottom: 20px;
 }
 
 .header__days__dayblock {
-    /* height: 25px; */
     display: grid;
     grid-template-rows: 1fr, 1fr, 1fr;
-    /* background: #ccc; */
     align-items: center;
     justify-content: center;
 }
@@ -52,9 +56,6 @@
     padding-top: 10px;
 }
 
-.header__week_num {
-    margin: 5px;
-}
 
 /* ========== LESSON HOLDER ==========  */
 
