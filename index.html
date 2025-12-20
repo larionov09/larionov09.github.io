@@ -13,7 +13,14 @@
         <header class="header">
             <p>только для 607-52а, числители и знаменатели автоматически отображаются верно</p>
 
-            <p class="header__week_num" id="weekNum">Неделя 1</p>
+            <div class="header__week_num_container">
+                <div class="header__week_num_button" onclick="onClickPreviousWeek()">&lt;</div>
+                <p class="header__week_num" id="weekNum">
+                    Неделя 1
+                </p>
+                <div class="header__week_num_button" onclick="onClickNextWeek()">&gt;</div>
+            </div>
+
             <div class="header__days">
                 <div class="header__days__dayblock" id="day0elem">
                     <span>01<br>дек.</span>
@@ -52,9 +59,6 @@
                 </div>
             </div>
 
-            <!-- <button>&lt;</button>
-            1 декабря 2025 г.
-            <button>&gt;</button> -->
         </header>
         <div class="lesson_holder" id="lessonHolder">
 
