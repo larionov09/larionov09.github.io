@@ -22,7 +22,7 @@ const weekNumElement = document.getElementById('weekNum')
 const DAY_DATA_URL = 'https://script.google.com/macros/s/AKfycbwyw3F88UbggaasIe2PtbKXBNGt0JapjQuStBEKOlmkm3QuQInCWUjKm4wccjdSDnKWmA/exec'
 let selectedDayOfTheWeek = 0
 let weekIsEven = true;
-let currentDate = new Date()
+let currentlySeletedDayDate = new Date()
 const HARDCODED_FIRST_DAY_FIRST_WEEK = new Date(2025, 8, 1)
 
 
@@ -106,9 +106,9 @@ function setDayOfTheWeek(num) {
   selectedDayOfTheWeek = num
 }
 
-function changeDayOfTheWeekFromButton(num, invokerElement) {
+function changeDayOfTheWeekFromButton(dayOfTheWeekIndex, invokerElement) {
   clearLessonEntries()
-  setDayOfTheWeek(num)
+  setDayOfTheWeek(dayOfTheWeekIndex)
   createLessonEntriesFromDays(selectedDayOfTheWeek)
   for (let i = 0; i < dayButtonElements.length; i++) {
     const element = dayButtonElements[i]
@@ -170,8 +170,8 @@ function changeDateOnDayButton(elemNum, date) {
   dayButtonElements[elemNum].firstElementChild.innerText = `${dayStr}\n${ruMonth}`
 }
 
-function changeButtonsToSelectedWeek(date) {
-  let loopDate = getFirstDayOfWeekDate(date)
+function changeButtonsToSelectedWeek(dayDate) {
+  let loopDate = getFirstDayOfWeekDate(dayDate)
   for (let i = 0; i < dayButtonElements.length; i++) {
     changeDateOnDayButton(i, loopDate)
     loopDate.setDate(loopDate.getDate() + 1)
@@ -180,6 +180,35 @@ function changeButtonsToSelectedWeek(date) {
 
 //#endregion
 
+//#region ========== week buttons ==========
+function changeWeekText(dayDate) {
+  const weekNum = getWeekNumber(HARDCODED_FIRST_DAY_FIRST_WEEK, dayDate)
+  weekNumElement.innerText = `Неделя ${weekNum}`
+  weekIsEven = weekNum % 2 === 0
+}
+
+function onClickPreviousWeek() {
+  const a = new Date(currentlySeletedDayDate)
+  a.setDate(currentlySeletedDayDate.getDate() - 7)
+  currentlySeletedDayDate = a
+
+  updateSelectedDateChanged()
+}
+function onClickNextWeek() {
+  const a = new Date(currentlySeletedDayDate)
+  a.setDate(currentlySeletedDayDate.getDate() + 7)
+  currentlySeletedDayDate = a
+
+  updateSelectedDateChanged()
+}
+
+function updateSelectedDateChanged() {
+  changeButtonsToSelectedWeek(currentlySeletedDayDate)
+  changeWeekText(currentlySeletedDayDate)
+  clearLessonEntries()
+  createLessonEntriesFromDays(selectedDayOfTheWeek)
+}
+//#endregion
 
 
 async function init() {
@@ -187,17 +216,14 @@ async function init() {
   // a.setDate(currentDate.getDate() + 0)
   // currentDate = a
 
-  changeButtonsToSelectedWeek(currentDate)
-  const dayOfWeekIndex = dateGetDayOfWeek(currentDate)
+  const dayOfWeekIndex = dateGetDayOfWeek(currentlySeletedDayDate)
+  changeButtonsToSelectedWeek(currentlySeletedDayDate)
+  changeWeekText(currentlySeletedDayDate)
   changeDayOfTheWeekFromButton(dayOfWeekIndex, dayButtonElements[dayOfWeekIndex])
+
   clearLessonEntries()
   newLessonEntry(null, 'Загрузка...')
 
-  const weekNum = getWeekNumber(HARDCODED_FIRST_DAY_FIRST_WEEK, currentDate)
-  weekNumElement.innerText = `Неделя ${weekNum}`
-  weekIsEven = weekNum % 2 === 0
-
-  // return
   try {
     const response = await fetch(DAY_DATA_URL);
     const data = await response.json();
@@ -213,7 +239,6 @@ async function init() {
   }
   enableDayButtons()
   createLessonEntriesFromDays(selectedDayOfTheWeek)
-
 
 }
 
