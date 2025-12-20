@@ -7,6 +7,12 @@
     text-align: center;
 }
 
+/* ========== Wrapper ==========  */
+.wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
 /* ========== HEADER ==========  */
 
 .header__days {
@@ -57,6 +63,8 @@
     gap: 15px;
     display: flex;
     flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .lesson {
