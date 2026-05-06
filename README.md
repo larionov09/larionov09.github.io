@@ -2,7 +2,7 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/larionov09/larionov09.github.io/blob/main/LICENSE)
 
 which you can access 24/7 and easily edit from pc or mobile.
-The [larionov09.github.io](larionov09.github.io) website is an example. (I use it for studying)
+The [larionov09.github.io](https://larionov09.github.io) website is an example. (I use it for studying)
 ## Features:
 - It's completely free to use and make
 - Edit timetable in Google Sheets (or allow someone else to do it)
